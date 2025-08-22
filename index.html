@@ -217,3 +217,27 @@ function sendToWhatsApp() {
     <div class="upi-section">
         <h1>Pay via UPI</h1>
         <p>Use UPI ID: <strong>7667815357@fam</strong></p>
+<!-- Floating Disclaimer -->
+<div id="floating-disclaimer">
+  <p>
+    <strong>Note:</strong> Prices shown are for writing practicals only. The cost of the practical notebook or any other materials will be extra.<br>
+    <strong>नोट:</strong> यहाँ दिखाई गई कीमतें केवल प्रैक्टिकल लिखने की सेवा के लिए हैं। प्रैक्टिकल नोटबुक या अन्य सामग्री की लागत अलग से होगी।
+  </p>
+</div>
+
+<style>
+#floating-disclaimer {
+  position: fixed;      /* Makes it float */
+  top: 0;               /* Stick to top */
+  left: 0;
+  width: 100%;
+  background-color: #fffae6;  /* Light yellow background */
+  color: #333;          /* Text color */
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+  z-index: 9999;        /* Stay on top of other content */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+}
+</style>
