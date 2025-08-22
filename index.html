@@ -176,3 +176,152 @@ function sendToWhatsApp() {
   window.open("https://wa.me/917667815357?text=" + message, "_blank");
 }
 </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRACTIKAL KARAO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 20px;
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .service {
+      background: white;
+      margin: 15px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      width: 80%;
+      max-width: 500px;
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    #cart {
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      width: 80%;
+      max-width: 500px;
+    }
+    .upi-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e6f9f0;
+      border-radius: 10px;
+      border: 1px solid #00a86b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>📝 PRACTIKAL KARAO</header>
+
+  <div class="service">
+    <h2>Science Practical (Complete)</h2>
+    <p>Price: ₹700</p>
+    <button onclick="addToCart('Science Practical (Complete)', 700)">Add to Cart</button>
+  </div>
+
+  <div class="service">
+    <h2>Science Practical (Each)</h2>
+    <p>Price: ₹250</p>
+    <button onclick="addToCart('Science Practical (Each)', 250)">Add to Cart</button>
+  </div>
+
+  <div class="service">
+    <h2>Math Practical</h2>
+    <p>Price: ₹350</p>
+    <button onclick="addToCart('Math Practical', 350)">Add to Cart</button>
+  </div>
+
+  <div class="service">
+    <h2>Math + Science Package</h2>
+    <p>Price: ₹1000</p>
+    <button onclick="addToCart('Math + Science Package', 1000)">Add to Cart</button>
+  </div>
+
+  <div id="cart">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p><b>Total Price:</b> ₹<span id="total">0</span></p>
+    <p><b>Advance (30%):</b> ₹<span id="advance">0</span></p>
+
+    <div class="upi-box">
+      <h3>Pay 30% Advance via UPI</h3>
+      <p><b>UPI ID:</b> 7667815357@fam</p>
+    </div>
+
+    <h3>Enter Your Details</h3>
+    <input type="text" id="username" placeholder="Your Name" style="padding:8px; width:90%; margin-bottom:10px;"><br>
+    <input type="text" id="whatsapp" placeholder="WhatsApp Number" style="padding:8px; width:90%; margin-bottom:10px;"><br>
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(service, price) {
+      cart.push({ service, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartList = document.getElementById('cart-items');
+      cartList.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        let li = document.createElement('li');
+        li.textContent = `${item.service} - ₹${item.price}`;
+        cartList.appendChild(li);
+        total += item.price;
+      });
+
+      document.getElementById('total').textContent = total;
+      document.getElementById('advance').textContent = Math.round(total * 0.3);
+    }
+
+    function placeOrder() {
+      let name = document.getElementById('username').value;
+      let whatsapp = document.getElementById('whatsapp').value;
+      let total = document.getElementById('total').textContent;
+      let advance = document.getElementById('advance').textContent;
+
+      if (!name || !whatsapp) {
+        alert("Please enter your name and WhatsApp number.");
+        return;
+      }
+
+      let orderText = `Hello, my name is ${name}. My WhatsApp is ${whatsapp}. I want to order: ${cart.map(i => i.service).join(", ")}. Total Price = ₹${total}, Advance Payable = ₹${advance}. My UPI ID to pay is 7667815357@fam.`;
+
+      let whatsappUrl = `https://wa.me/917667815357?text=${encodeURIComponent(orderText)}`;
+      window.open(whatsappUrl, "_blank");
+    }
+  </script>
+
+</body>
+</html>
