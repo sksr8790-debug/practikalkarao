@@ -136,3 +136,43 @@
     💬 Chat on WhatsApp
   </a>
 </div>
+<h2 style="text-align:center; margin-top:40px;">Complete Your Order</h2>
+
+<form id="orderForm" style="max-width:400px; margin:auto; border:1px solid #ccc; padding:20px; border-radius:10px;">
+  <label>Name:</label><br>
+  <input type="text" id="name" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+
+  <label>WhatsApp Number:</label><br>
+  <input type="text" id="whatsapp" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+
+  <label>Select Service:</label><br>
+  <select id="service" style="width:100%; padding:8px; margin-bottom:10px;">
+    <option value="Science Complete - ₹700 (Advance ₹210)">Science Complete</option>
+    <option value="Science Each - ₹250 (Advance ₹75)">Science Each</option>
+    <option value="Math - ₹350 (Advance ₹105)">Math</option>
+    <option value="Math + Science - ₹1000 (Advance ₹300)">Math + Science</option>
+  </select><br>
+
+  <p>👉 After UPI payment, please attach screenshot in WhatsApp.</p>
+
+  <button type="button" onclick="sendToWhatsApp()" 
+          style="background:#25D366; color:white; padding:10px 20px; border:none; border-radius:6px; cursor:pointer;">
+    Submit Order on WhatsApp
+  </button>
+</form>
+
+<script>
+function sendToWhatsApp() {
+  var name = document.getElementById("name").value;
+  var whatsapp = document.getElementById("whatsapp").value;
+  var service = document.getElementById("service").value;
+
+  var message = "New Order Request%0A%0A" +
+                "Name: " + name + "%0A" +
+                "WhatsApp: " + whatsapp + "%0A" +
+                "Service: " + service + "%0A%0A" +
+                "I have paid 30% advance via UPI. Screenshot attached.";
+
+  window.open("https://wa.me/917667815357?text=" + message, "_blank");
+}
+</script>
